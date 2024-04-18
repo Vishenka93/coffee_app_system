@@ -1,26 +1,23 @@
-import { Link, useLocation } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { Card } from "../components";
-import { products, categories } from "../consts";
+import { products } from "../consts";
+
+
+import "./style.scss";
 
 function CardsGrid() {
-    const location = useLocation();
-    const path = location.pathname.split("/");
-    const category = path[path.length - 1];
+    // const location = useLocation();
+    // const path = location.pathname.split("/");
+    // const category = path[path.length - 1];
+    const { category } = useParams();
 
-    //  console.log(products);
     return (
         <div className="cards-grid">
-            <ul>
-                {categories.map(({ id, text, path }) => (
-                    <li id={id.toString()}>
-                        <Link to={path}>{text}</Link>
-                    </li>
-                ))}
-            </ul>
             {products
                 .filter((el) => el.category === category)
                 .map(({ id, name, category, price, img }) => (
                     <Card
+                        key={id}
                         id={id}
                         name={name}
                         category={category}
