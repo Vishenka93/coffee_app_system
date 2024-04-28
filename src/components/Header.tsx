@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { navigation } from "../consts";
+import { useDispatch } from "react-redux";
+import { changeTheme } from "../store/demoSclice";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -7,13 +9,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 function Header() {
+    const dispatch = useDispatch();
+
     return (
-        <Navbar
-            expand="lg"
-            // className="p-3 mb-2 bg-white bg-gradient text-white"
-            bg="secondary"
-            // data-bs-theme="dark"
-        >
+        <Navbar expand="lg" bg="secondary">
             <Container fluid>
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -32,6 +31,9 @@ function Header() {
                             </Nav.Link>
                         ))}
                     </Nav>
+                    <Button onClick={() => dispatch(changeTheme())}>
+                        theme
+                    </Button>
                     <Form className="d-flex">
                         <Form.Control
                             type="search"

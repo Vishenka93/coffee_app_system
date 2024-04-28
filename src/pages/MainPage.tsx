@@ -2,16 +2,14 @@
 import { Outlet } from "react-router-dom";
 import "./style.scss";
 import { categories } from "../consts";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Order } from "../components";
 import { Row, Col, Nav, Card, Button } from "react-bootstrap";
 
 function MainPage() {
-    // const [count, setCount] = useState<number>(0);
-    // const [title, setTitle] = useState<string>("");
     const { pathname } = useLocation();
+    const navigate = useNavigate();
 
-    // console.log(pathname);
     return (
         <Row>
             <Col xs={8}>
@@ -40,9 +38,7 @@ function MainPage() {
                         ))}
                     </Nav>
                 ) : (
-                    <Button as={Link} to={"/order"}>
-                        back
-                    </Button>
+                    <Button onClick={() => navigate("/order")}>back</Button>
                 )}
                 <Outlet />
             </Col>

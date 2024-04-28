@@ -4,7 +4,6 @@ import { useParams, Link, useLocation } from "react-router-dom";
 function CardPage() {
     const { id } = useParams();
     const { pathname } = useLocation();
-    console.log(pathname);
     if (!id) {
         return <div>Not Found page</div>;
     }
