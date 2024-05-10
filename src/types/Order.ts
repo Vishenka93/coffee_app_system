@@ -1,7 +1,8 @@
+import { OrderItem } from "./OrderItem";
+
 interface Order {
-    id: number;
+    orderItems: OrderItem[];
+    date: number;
 }
-
-
 
 export type { Order };

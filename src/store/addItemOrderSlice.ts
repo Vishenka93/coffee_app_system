@@ -54,7 +54,7 @@ const addItemOrderSlice = createSlice({
         confirmOrder(state) {
             const newOrder = {
                 orderItems: state.list,
-                date: new Date(),
+                date: Date.now(),
             };
 
             const currentOrders = JSON.parse(

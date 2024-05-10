@@ -12,6 +12,6 @@ export const navigation = [
     {
         id: 2,
         text: "Reports",
-        path: "/reports",
+        path: "/reports/report1",
     },
 ];
