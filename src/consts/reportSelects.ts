@@ -9,9 +9,4 @@ export const reportSelect = [
         text: "report2",
         path: "/reports/report2",
     },
-    {
-        id: 2,
-        text: "report3",
-        path: "/reports/report3",
-    },
 ];

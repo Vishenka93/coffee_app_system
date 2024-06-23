@@ -5,5 +5,5 @@ import Order from "./Order";
 import End from "./End";
 import Report1 from "./Report1";
 import Report2 from "./Report2";
-import Report3 from "./Report3";
-export { Card, CardsGrid, Header, Order, End, Report1, Report2, Report3 };
+
+export { Card, CardsGrid, Header, Order, End, Report1, Report2 };
