@@ -1,5 +1,6 @@
 import getReport1 from "./getReport1";
 import { Order } from "../types";
+import { TDocumentDefinitions } from "pdfmake/interfaces";
 
 function GetDDReport1(orders: Order[]) {
     const bodyRows = getReport1(orders).map(({ name, price, quantity }) => [
@@ -18,7 +19,7 @@ function GetDDReport1(orders: Order[]) {
         totalQuantity += quantity;
     });
 
-    const dd = {
+    const dd: TDocumentDefinitions = {
         content: [
             { text: "Report1", fontSize: 20, margin: [0, 0, 0, 20] },
 
