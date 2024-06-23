@@ -3,18 +3,16 @@ import { Button } from "react-bootstrap";
 import { RootState } from "../store/index";
 import { getTotalPrice } from "../helpers";
 
-import {
-    changeQuantity,
-    clearOrder,
-    confirmOrder,
-} from "../store/addItemOrderSlice";
+import { changeQuantity, clearOrder } from "../store/addItemOrderSlice";
+import { confirmOrder } from "../store/orders";
 // import { clearOrder, confirmOrder } from "../helpers/getConfirm";
 
 function Order() {
     const addItem = useSelector((state: RootState) => state.addItem.list);
+    // const orders = useSelector((state: RootState) => state.confirmedOrders);
     const dispatch = useDispatch();
     const clearDispatch = useDispatch();
-    const confirmDispatch = useDispatch();
+    // const confirmDispatch = useDispatch();
     const getTotal = getTotalPrice(addItem);
 
     return (
@@ -47,7 +45,14 @@ function Order() {
             ))}
             <p> total:{getTotal}</p>
             <Button onClick={() => clearDispatch(clearOrder())}>Cancel</Button>
-            <Button onClick={() => confirmDispatch(confirmOrder())}>
+            <Button
+                onClick={() => {
+                    dispatch(
+                        confirmOrder({ date: Date.now(), orderItems: addItem })
+                    );
+                    dispatch(clearOrder());
+                }}
+            >
                 Confirm
             </Button>
         </>

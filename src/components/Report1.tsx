@@ -8,7 +8,7 @@ import Table from "react-bootstrap/Table";
 function Report1() {
     // const addItem = useSelector((state: RootState) => state.addItem.list);
     const orders = JSON.parse(
-        localStorage.getItem("confirmedOrders")!
+        localStorage.getItem("confirmedOrders") || "[]"
     ) as Order[];
     const rows = getReport1(orders);
     let totalQuantity = 0;
@@ -19,7 +19,7 @@ function Report1() {
         totalAmount += quantity * price;
     });
 
-    console.log(rows);
+    
     return (
         <Table striped bordered hover>
             <thead>
@@ -31,8 +31,8 @@ function Report1() {
                 </tr>
             </thead>
             <tbody>
-                {rows.map(({ name, price, quantity }) => (
-                    <tr key={name}>
+                {rows.map(({ name, price, quantity }, index) => (
+                    <tr key={index}>
                         <td>{name}</td>
                         <td>{price}</td>
                         <td>{quantity}</td>

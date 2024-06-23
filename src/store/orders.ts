@@ -1,19 +1,42 @@
-import { createSlice } from "@reduxjs/toolkit";
-// import { act } from "react-dom/test-utils";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-
+import { Order } from "../types";
 
 const local = localStorage.getItem("confirmedOrders");
-const orders:  = local === null ? [] : JSON.parse(local);
+const orders: Order[] = local === null ? [] : (JSON.parse(local) as Order[]);
 
-const initialState = {};
+const initialState = orders;
 
-const demoTheme = createSlice({
+const confirmedOrders = createSlice({
     name: "orders",
     initialState,
-    reducers: {},
+    reducers: {
+        confirmOrder(state, action: PayloadAction<Order>) {
+            // const newOrder = {
+            //     orderItems: state.list,
+            //     date: Date.now(),
+            // };
+            state.push(action.payload)
+            localStorage.setItem(
+                "confirmedOrders",
+                JSON.stringify(state)
+            );
+
+            // const currentOrders = JSON.parse(
+            //     localStorage.getItem("confirmedOrders") || "[]"
+            // );
+            // currentOrders.push(newOrder);
+
+            // localStorage.setItem(
+            //     "confirmedOrders",
+            //     JSON.stringify(currentOrders)
+            // );
+
+            // state.list = [];
+        },
+    },
 });
 
-export const { changeTheme } = demoTheme.actions;
+export const { confirmOrder } = confirmedOrders.actions;
 
-// export default demoTheme.reducer;
+export default confirmedOrders.reducer;

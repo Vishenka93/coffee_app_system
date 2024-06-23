@@ -51,28 +51,11 @@ const addItemOrderSlice = createSlice({
         clearOrder(state) {
             state.list = [];
         },
-        confirmOrder(state) {
-            const newOrder = {
-                orderItems: state.list,
-                date: Date.now(),
-            };
-
-            const currentOrders = JSON.parse(
-                localStorage.getItem("confirmedOrders") || "[]"
-            );
-            currentOrders.push(newOrder);
-
-            localStorage.setItem(
-                "confirmedOrders",
-                JSON.stringify(currentOrders)
-            );
-
-            state.list = [];
-        },
+       
     },
 });
 
-export const { addItemOrder, changeQuantity, clearOrder, confirmOrder } =
+export const { addItemOrder, changeQuantity, clearOrder } =
     addItemOrderSlice.actions;
 
 export default addItemOrderSlice.reducer;

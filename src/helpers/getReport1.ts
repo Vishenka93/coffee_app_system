@@ -34,7 +34,7 @@ function getReport1(orders: Order[]) {
                 items[name].quantity += quantity;
             })
         );
-    console.log(items);
+   
     return Object.entries(items)
         .map(([name, { price, quantity }]) => {
             return {
